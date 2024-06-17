@@ -10,21 +10,21 @@
     "start": "remix-serve build"
   },
   "dependencies": {
-    "@aws-amplify/ui-react": "^2.11.0",
+    "@aws-amplify/ui-react": "^6.1.12",
     "@aws-sdk/client-appsync": "^3.100.0",
-    "@remix-run/node": "^1.5.1",
-    "@remix-run/react": "^1.5.1",
-    "@remix-run/serve": "^1.5.1",
-    "aws-amplify": "^4.3.18",
+    "@remix-run/node": "^2.9.2",
+    "@remix-run/react": "^2.9.2",
+    "@remix-run/serve": "^2.9.2",
+    "aws-amplify": "^6.3.6",
     "aws-appsync": "^4.1.6",
     "axios": "^0.27.2",
     "graphql-tag": "^2.12.6",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@remix-run/dev": "1.5.1",
-    "@remix-run/eslint-config": "1.5.1",
+    "@remix-run/dev": "2.9.2",
+    "@remix-run/eslint-config": "2.9.2",
     "eslint": "^8.11.0"
   },
   "engines": {

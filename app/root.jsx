@@ -29,11 +29,13 @@ export function links() {
 }
 
 export function meta() {
-  return {
-    charset: "utf-8",
-    title: "Amplify Remix Example",
-    viewport: "width=device-width,initial-scale=1",
-  };
+  return [
+    {
+      charset: "utf-8",
+      title: "Amplify Remix Example",
+      viewport: "width=device-width,initial-scale=1",
+    },
+  ];
 }
 
 export default function App() {
@@ -43,7 +45,7 @@ export default function App() {
         <Meta />
         <Links />
       </head>
-      <body className="ui container" style={{marginTop:40}}>
+      <body className="ui container" style={{ marginTop: 40 }}>
         <Authenticator.Provider>
           <Outlet />
           <ScrollRestoration />

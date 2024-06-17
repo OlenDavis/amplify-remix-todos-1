@@ -1,5 +1,5 @@
 import { useFetcher, useLoaderData } from "@remix-run/react";
-import { Auth } from "aws-amplify";
+import { signOut, fetchUserAttributes } from "aws-amplify/auth";
 import { Heading } from "@aws-amplify/ui-react";
 import { logout, requireUserId } from "../session.server";
 import { useEffect, useState } from "react";
@@ -66,7 +66,7 @@ export default function Tasks() {
   const [user, setUser] = useState();
 
   useEffect(() => {
-    Auth.currentUserInfo().then((userInfo) => setUser(userInfo));
+    fetchUserAttributes().then((userAttributes) => setUser(userAttributes));
   }, [accessToken, idToken]);
 
   return (
@@ -74,15 +74,13 @@ export default function Tasks() {
       <Heading level={3} textAlign="center">
         Private Page
       </Heading>
-      <h3>
-        {user && `Logged in with authenticated user ${user?.attributes?.email}`}{" "}
-      </h3>
+      <h3>{user && `Logged in with authenticated user ${user?.email}`} </h3>
       <button
         className="ui button"
         type="button"
         onClick={async () => {
           // amplify sign out
-          await Auth.signOut({ global: true });
+          await signOut({ global: true });
 
           // clear out our session cookie...
           fetcher.submit({}, { method: "post" });
@@ -95,12 +93,14 @@ export default function Tasks() {
         {/* <pre>{JSON.stringify(tasks, null, 2)}</pre> */}
         <div className="ui list divided large relaxed">
           {tasks?.map((t) => {
-            return <div className="ui item " key={t.id}>
-              <div className="ui content">
-              <div>{t.description}</div>
-              <div>{t.createdAt}</div>
+            return (
+              <div className="ui item " key={t.id}>
+                <div className="ui content">
+                  <div>{t.description}</div>
+                  <div>{t.createdAt}</div>
+                </div>
               </div>
-            </div>;
+            );
           })}
         </div>
       </div>
